@@ -1,0 +1,36 @@
+services:
+  web:
+    container_name: youtube_video_downloader_web
+    image: youtube_video_downloader_web_image
+    depends_on:
+      - api
+    build: apps/web
+    ports:
+      - '5173:5173'
+    environment:
+      API_URL: 'http://api:5000'
+    develop:
+      watch:
+        - path: apps/web/package.json
+          action: rebuild
+
+        - path: apps/web/pnpm-lock.yaml
+          action: rebuild
+
+        - path: apps/web
+          target: /app
+          action: sync
+  api:
+    container_name: youtube_video_downloader_api
+    image: youtube_video_downloader_api_image
+    build: apps/api
+    ports:
+      - '5000:5000'
+    develop:
+      watch:
+        - path: apps/api/requirements.txt
+          action: rebuild
+
+        - path: apps/api
+          target: /app
+          action: sync
