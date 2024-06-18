@@ -18,7 +18,7 @@ YouTube Video Downloader enables quick and easy downloading of YouTube videos. ð
 
 - Vite
 - SvelteKit
-- Typescript
+- TypeScript
 - Tailwind CSS
 - shadcn-svelte
 - SuperForms
