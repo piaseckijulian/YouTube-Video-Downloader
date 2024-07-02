@@ -73,8 +73,8 @@ def download_video():
         return {
             "error": "VIDEO_UNAVAILABLE",
         }, 400
-    except Exception:
-        return {"error": "Error during downloading video"}, 500
+    except Exception as e:
+        return {"error": "Error during downloading video", "msg": str(e)}, 500
 
 
 if __name__ == "__main__":
