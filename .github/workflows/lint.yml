@@ -29,7 +29,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Install Backend dependencies
-        run: cd apps/api && pip install -r requirements-dev.txt
+        run: cd ./api && pip install -r requirements-dev.txt
 
       - name: Lint Frontend
         run: pnpm lint:web
