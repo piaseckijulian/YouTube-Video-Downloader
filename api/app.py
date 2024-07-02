@@ -1,8 +1,6 @@
-import io
-import os
-from os import environ
+from io import BytesIO
+from os import environ, remove
 
-from dotenv import load_dotenv
 from flask import Flask, request, send_file
 from flask_cors import CORS
 from pytube import YouTube
@@ -14,20 +12,19 @@ from pytube.exceptions import (
     VideoRegionBlocked,
     VideoUnavailable,
 )
+
+# Unblock restricted content
 from pytube.innertube import _default_clients
 
-load_dotenv()
+_default_clients["ANDROID_MUSIC"] = _default_clients["ANDROID_CREATOR"]
+
 
 app = Flask(__name__)
 CORS(app)
 
 
-# Unblocking restricted content
-_default_clients["ANDROID_MUSIC"] = _default_clients["ANDROID_CREATOR"]
-
-
 @app.route("/downloadVideo")
-def downloadVideo():
+def download_video():
     video_url = request.args.get("url")
 
     if not video_url:
@@ -35,7 +32,6 @@ def downloadVideo():
 
     try:
         video = YouTube(video_url)
-
         stream = video.streams.get_highest_resolution()
         video_path = stream.download()
 
@@ -44,10 +40,10 @@ def downloadVideo():
             video_data = file.read()
 
         # Remove the video file
-        os.remove(video_path)
+        remove(video_path)
 
         return send_file(
-            io.BytesIO(video_data),
+            path_or_file=BytesIO(video_data),
             as_attachment=True,
             download_name=f"{video.title}.mp4",
             mimetype="video/mp4",
@@ -81,10 +77,15 @@ def downloadVideo():
         return {"error": "Error during downloading video"}, 500
 
 
-isProd = bool(environ.get("PROD"))
+if __name__ == "__main__":
+    # Production
+    from dotenv import load_dotenv
 
-# Production
-if __name__ == "__main__" and isProd:
-    from waitress import serve
+    load_dotenv()
 
-    serve(app, host="0.0.0.0", port=5000)
+    is_prod = bool(environ.get("PROD"))
+
+    if is_prod:
+        from waitress import serve
+
+        serve(app, host="0.0.0.0", port=5000)

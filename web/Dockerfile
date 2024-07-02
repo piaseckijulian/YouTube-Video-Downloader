@@ -4,13 +4,12 @@ RUN npm install -g pnpm
 
 WORKDIR /app
 
-COPY pnpm-lock.yaml .
-COPY package.json .
+COPY package.json pnpm-lock.yaml ./
 
-RUN pnpm i
+RUN pnpm i --frozen-lockfile
 
 COPY . .
 
 EXPOSE 5173
 
-CMD pnpm dev
+CMD pnpm dev --host

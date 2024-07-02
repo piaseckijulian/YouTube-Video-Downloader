@@ -4,33 +4,36 @@ services:
     image: youtube_video_downloader_web_image
     depends_on:
       - api
-    build: apps/web
+    build: ./web
     ports:
       - '5173:5173'
     environment:
       API_URL: 'http://api:5000'
+    volumes:
+      - ./web/.svelte-kit:/app/.svelte-kit
     develop:
       watch:
-        - path: apps/web/package.json
+        - path: ./web/package.json
           action: rebuild
 
-        - path: apps/web/pnpm-lock.yaml
+        - path: ./web/pnpm-lock.yaml
           action: rebuild
 
-        - path: apps/web
+        - path: ./web
           target: /app
           action: sync
+
   api:
     container_name: youtube_video_downloader_api
     image: youtube_video_downloader_api_image
-    build: apps/api
+    build: ./api
     ports:
       - '5000:5000'
     develop:
       watch:
-        - path: apps/api/requirements.txt
+        - path: ./api/requirements.txt
           action: rebuild
 
-        - path: apps/api
+        - path: ./api
           target: /app
           action: sync
