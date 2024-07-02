@@ -6,7 +6,7 @@
 
 YouTube Video Downloader enables quick and easy downloading of YouTube videos. 🚀
 
-<img src="./apps/web/static/thumbnail.png" alt="Image of YouTube Video Downloader" width="800" height="400" />
+<img src="./web/static/thumbnail.png" alt="Image of YouTube Video Downloader" width="800" height="400" />
 
 ## 🔗 Links
 
