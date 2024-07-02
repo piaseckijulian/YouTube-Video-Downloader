@@ -74,7 +74,9 @@ def download_video():
             "error": "VIDEO_UNAVAILABLE",
         }, 400
     except Exception as e:
-        return {"error": "Error during downloading video", "msg": str(e)}, 500
+        return {
+            "error": f"Unhandled error: {e}",
+        }, 500
 
 
 if __name__ == "__main__":
