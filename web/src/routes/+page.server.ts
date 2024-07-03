@@ -1,3 +1,4 @@
+import { API_URL } from '$env/static/private';
 import { formSchema } from '$lib/schema';
 import type { ApiErrorRes } from '$lib/types';
 import { fail } from '@sveltejs/kit';
@@ -23,7 +24,6 @@ export const actions: Actions = {
     }
 
     const videoUrl = form.data.videoUrl;
-    const API_URL = process.env.API_URL as string;
 
     try {
       const { data } = await axios.get<ArrayBuffer>(
