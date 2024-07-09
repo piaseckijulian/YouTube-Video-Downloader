@@ -4,8 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "lint:web": "cd ./web && pnpm lint",
-    "lint:api": "cd ./api && flake8",
+    "lint": "prettier --check . && eslint .",
+    "format": "prettier --write .",
     "prepare": "husky"
   },
   "devDependencies": {
