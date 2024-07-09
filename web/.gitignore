@@ -1,8 +1,8 @@
-.DS_Store
-node_modules
+/node_modules
 /build
 /.svelte-kit
 /package
+.DS_Store
 .env
 .env.*
 !.env.example
