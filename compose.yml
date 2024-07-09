@@ -6,7 +6,7 @@ services:
       - api
     build: ./web
     ports:
-      - '5173:5173'
+      - "5173:5173"
     volumes:
       - ./web/.svelte-kit:/app/.svelte-kit
     develop:
@@ -26,7 +26,7 @@ services:
     image: piaseckijulian/youtube_video_downloader_api
     build: ./api
     ports:
-      - '5000:5000'
+      - "5000:5000"
     develop:
       watch:
         - path: ./api/requirements.txt

@@ -1,5 +1,5 @@
-# Ignore files for PNPM, NPM and YARN
+/.svelte-kit
+
 pnpm-lock.yaml
 package-lock.json
 yarn.lock
-.svelte-kit

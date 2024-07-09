@@ -1,12 +1,12 @@
 <script lang="ts">
-  import DownloadErrors from '$lib/components/DownloadErrors.svelte';
-  import DownloadForm from '$lib/components/DownloadForm.svelte';
-  import DownloadLink from '$lib/components/DownloadLink.svelte';
+  import DownloadErrors from "$lib/components/DownloadErrors.svelte"
+  import DownloadForm from "$lib/components/DownloadForm.svelte"
+  import DownloadLink from "$lib/components/DownloadLink.svelte"
 
-  import type { ActionData, PageData } from './$types';
+  import type { ActionData, PageData } from "./$types"
 
-  export let data: PageData;
-  export let form: ActionData;
+  export let data: PageData
+  export let form: ActionData
 </script>
 
 <main class="container mt-10">

@@ -1,22 +1,22 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
+  import { onMount } from "svelte"
 
-  export let videoBase64String: string;
+  export let videoBase64String: string
 
-  let downloadAnchorRef: HTMLAnchorElement;
+  let downloadAnchorRef: HTMLAnchorElement
 
   onMount(() => {
     const arrayBuffer = new Uint8Array(
       atob(videoBase64String)
-        .split('')
+        .split("")
         .map(char => char.charCodeAt(0))
-    ).buffer;
+    ).buffer
 
-    const blob = new Blob([arrayBuffer], { type: 'video/mp4' });
+    const blob = new Blob([arrayBuffer], { type: "video/mp4" })
 
-    downloadAnchorRef.href = URL.createObjectURL(blob);
-    downloadAnchorRef.click();
-  });
+    downloadAnchorRef.href = URL.createObjectURL(blob)
+    downloadAnchorRef.click()
+  })
 </script>
 
 <div class="flex justify-center">

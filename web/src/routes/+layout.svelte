@@ -1,16 +1,16 @@
 <script lang="ts">
-  import { inject } from '@vercel/analytics';
-  import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
-  import '../app.css';
+  import { inject } from "@vercel/analytics"
+  import { injectSpeedInsights } from "@vercel/speed-insights/sveltekit"
+  import "../app.css"
 
-  inject();
-  injectSpeedInsights();
+  inject()
+  injectSpeedInsights()
 
   const description =
-    'YouTube Video Downloader enables quick and easy downloading of YouTube videos.';
-  const title = 'YouTube Video Downloader';
-  const url = 'https://julian-yt-downloader.vercel.app';
-  const imagePath = `${url}/thumbnail.png`;
+    "YouTube Video Downloader enables quick and easy downloading of YouTube videos."
+  const title = "YouTube Video Downloader"
+  const url = "https://julian-yt-downloader.vercel.app"
+  const imagePath = `${url}/thumbnail.png`
 </script>
 
 <svelte:head>
