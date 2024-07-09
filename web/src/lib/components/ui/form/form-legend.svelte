@@ -12,7 +12,7 @@
   {...$$restProps}
   class={cn(
     "data-[fs-error]:text-destructive text-sm font-medium leading-none",
-    className
+    className,
   )}
   let:legendAttrs
 >

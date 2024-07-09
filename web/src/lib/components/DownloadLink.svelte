@@ -9,7 +9,7 @@
     const arrayBuffer = new Uint8Array(
       atob(videoBase64String)
         .split("")
-        .map(char => char.charCodeAt(0))
+        .map((char) => char.charCodeAt(0)),
     ).buffer
 
     const blob = new Blob([arrayBuffer], { type: "video/mp4" })

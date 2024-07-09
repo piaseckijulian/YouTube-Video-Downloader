@@ -9,17 +9,17 @@ import type { Actions, PageServerLoad } from "./$types"
 
 export const load: PageServerLoad = async () => {
   return {
-    form: await superValidate(zod(formSchema))
+    form: await superValidate(zod(formSchema)),
   }
 }
 
 export const actions: Actions = {
-  default: async event => {
+  default: async (event) => {
     const form = await superValidate(event, zod(formSchema))
 
     if (!form.valid) {
       return fail(400, {
-        form
+        form,
       })
     }
 
@@ -28,7 +28,7 @@ export const actions: Actions = {
     try {
       const { data } = await axios.get<ArrayBuffer>(
         `${API_URL}/downloadVideo?url=${encodeURIComponent(videoUrl)}`,
-        { responseType: "arraybuffer" }
+        { responseType: "arraybuffer" },
       )
 
       const base64String = Buffer.from(data).toString("base64")
@@ -36,13 +36,13 @@ export const actions: Actions = {
       return {
         form,
         videoBase64String: base64String,
-        error: null
+        error: null,
       }
     } catch (error) {
       if (error instanceof AxiosError) {
         const res = error.response?.data
         const { error: errorMsg }: ApiErrorRes = JSON.parse(
-          Buffer.from(res).toString()
+          Buffer.from(res).toString(),
         )
 
         console.error(errorMsg)
@@ -50,9 +50,9 @@ export const actions: Actions = {
         return {
           form,
           videoBase64String: null,
-          error: errorMsg
+          error: errorMsg,
         }
       }
     }
-  }
+  },
 }

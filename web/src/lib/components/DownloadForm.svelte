@@ -6,14 +6,14 @@
   import {
     superForm,
     type Infer,
-    type SuperValidated
+    type SuperValidated,
   } from "sveltekit-superforms"
   import { zodClient } from "sveltekit-superforms/adapters"
 
   export let data: SuperValidated<Infer<FormSchema>>
 
   const form = superForm(data, {
-    validators: zodClient(formSchema)
+    validators: zodClient(formSchema),
   })
 
   const { form: formData, enhance, delayed } = form
