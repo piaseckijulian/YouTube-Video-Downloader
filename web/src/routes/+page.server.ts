@@ -1,6 +1,6 @@
 import { API_URL } from "$env/static/private"
 import { formSchema } from "$lib/schema"
-import type { ApiErrorRes } from "$lib/types"
+import type { ErrorApiResponse } from "$lib/types"
 import { fail } from "@sveltejs/kit"
 import axios, { AxiosError } from "axios"
 import { superValidate } from "sveltekit-superforms"
@@ -13,7 +13,7 @@ export const load: PageServerLoad = async () => {
   }
 }
 
-export const actions: Actions = {
+export const actions = {
   default: async (event) => {
     const form = await superValidate(event, zod(formSchema))
 
@@ -27,7 +27,7 @@ export const actions: Actions = {
 
     try {
       const { data } = await axios.get<ArrayBuffer>(
-        `${API_URL}/downloadVideo?url=${encodeURIComponent(videoUrl)}`,
+        `${API_URL}/download-video?url=${encodeURIComponent(videoUrl)}`,
         { responseType: "arraybuffer" },
       )
 
@@ -41,7 +41,7 @@ export const actions: Actions = {
     } catch (error) {
       if (error instanceof AxiosError) {
         const res = error.response?.data
-        const { error: errorMsg }: ApiErrorRes = JSON.parse(
+        const { detail: errorMsg }: ErrorApiResponse = JSON.parse(
           Buffer.from(res).toString(),
         )
 
@@ -55,4 +55,4 @@ export const actions: Actions = {
       }
     }
   },
-}
+} satisfies Actions

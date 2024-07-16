@@ -1,22 +1,22 @@
 <script lang="ts">
-  import type { ApiError } from "$lib/types"
-  import Error from "./Error.svelte"
+  import type { ErrorApiResponse } from "$lib/types"
+  import ErrorMessage from "./ErrorMessage.svelte"
 
-  export let error: ApiError
+  export let error: ErrorApiResponse["detail"]
 </script>
 
 {#if error === "VIDEO_UNAVAILABLE"}
-  <Error message="Video is unavailable" />
+  <ErrorMessage message="Video is unavailable" />
 {:else if error === "VIDEO_LIVE_STREAM"}
-  <Error message="Video is a Live Stream" />
+  <ErrorMessage message="Video is a Live Stream" />
 {:else if error === "VIDEO_AGE_RESTRICTED"}
-  <Error message="Video is Age Restricted" />
-{:else if error === "VIDEO_BLOCKED_REGION"}
-  <Error message="Video is blocked in your region" />
+  <ErrorMessage message="Video is Age Restricted" />
+{:else if error === "VIDEO_REGION_BLOCKED"}
+  <ErrorMessage message="Video is blocked in your region" />
 {:else if error === "VIDEO_MEMBERS_ONLY"}
-  <Error message="Video is only for members" />
+  <ErrorMessage message="Video is only for members" />
 {:else if error === "VIDEO_PRIVATE"}
-  <Error message="Video is private" />
+  <ErrorMessage message="Video is private" />
 {:else if error}
-  <Error message="Something went wrong" />
+  <ErrorMessage message="Something went wrong" />
 {/if}

@@ -29,7 +29,7 @@ YouTube Video Downloader enables quick and easy downloading of YouTube videos. �
 ### 🛠️ Backend
 
 - Python
-- Flask
+- FastAPI
 - PyTube
 
 ## ✨ Usage
@@ -44,7 +44,7 @@ That's it! - You're good to go. You can add new features, fix bugs etc.
 
 ## 🔥 API Endpoints
 
-- /downloadVideo?url=`VIDEO_URL`
+- /download-video?url=`VIDEO_URL`
 
 ## 🌐 License
 

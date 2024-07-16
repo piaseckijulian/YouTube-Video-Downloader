@@ -1,11 +1,10 @@
-export type ApiError =
-  | "VIDEO_UNAVAILABLE"
-  | "VIDEO_PRIVATE"
-  | "VIDEO_MEMBERS_ONLY"
-  | "VIDEO_AGE_RESTRICTED"
-  | "VIDEO_BLOCKED_REGION"
-  | "VIDEO_LIVE_STREAM"
-
-export interface ApiErrorRes {
-  error: ApiError
+export type ErrorApiResponse = {
+  detail:
+    | "VIDEO_PRIVATE"
+    | "VIDEO_MEMBERS_ONLY"
+    | "VIDEO_AGE_RESTRICTED"
+    | "VIDEO_REGION_BLOCKED"
+    | "VIDEO_LIVE_STREAM"
+    | "VIDEO_UNAVAILABLE"
+    | "An unexpected error ocurred"
 }

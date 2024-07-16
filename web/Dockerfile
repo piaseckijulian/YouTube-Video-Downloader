@@ -10,7 +10,7 @@ RUN pnpm i
 
 COPY . .
 
-ENV API_URL=http://api:5000
+ENV API_URL=http://api:8000
 
 EXPOSE 5173
 
