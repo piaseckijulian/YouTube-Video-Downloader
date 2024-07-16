@@ -17,6 +17,8 @@
   <ErrorMessage message="Video is only for members" />
 {:else if error === "VIDEO_PRIVATE"}
   <ErrorMessage message="Video is private" />
+{:else if error === "TOO_MANY_REQUESTS"}
+  <ErrorMessage message="Too many requests. Try again later." />
 {:else if error}
   <ErrorMessage message="Something went wrong" />
 {/if}

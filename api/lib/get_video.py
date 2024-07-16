@@ -5,7 +5,9 @@ from pytube import YouTube
 from pytube.exceptions import (
     AgeRestrictedError,
     LiveStreamError,
+    MaxRetriesExceeded,
     MembersOnly,
+    RegexMatchError,
     VideoPrivate,
     VideoRegionBlocked,
     VideoUnavailable,
@@ -47,6 +49,10 @@ def get_video(video_url: str) -> tuple[BytesIO | None, str | None]:
         return (None, "VIDEO_LIVE_STREAM")
     except VideoUnavailable:
         return (None, "VIDEO_UNAVAILABLE")
+    except MaxRetriesExceeded:
+        return (None, "TOO_MANY_REQUESTS")
+    except RegexMatchError:
+        return (None, "The provided URL is not a valid YouTube video URL")
     except Exception as e:
         logging.error(
             f"An unexpected error occurred. Video URL: {video_url}, Error: {e}"
