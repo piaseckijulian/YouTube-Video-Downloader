@@ -1,2 +1,2 @@
 fastapi==0.111.1
-pytube==15.0.0
+pytubefix==6.5.2
