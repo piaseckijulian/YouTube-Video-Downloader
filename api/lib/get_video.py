@@ -1,8 +1,8 @@
 import logging
 from io import BytesIO
 
-from pytube import YouTube
-from pytube.exceptions import (
+from pytubefix import YouTube
+from pytubefix.exceptions import (
     AgeRestrictedError,
     LiveStreamError,
     MaxRetriesExceeded,
@@ -12,7 +12,7 @@ from pytube.exceptions import (
     VideoRegionBlocked,
     VideoUnavailable,
 )
-from pytube.innertube import _default_clients
+from pytubefix.innertube import _default_clients
 
 # Configure logging
 logging.basicConfig(
