@@ -1,7 +1,0 @@
-{
-  "functions": {
-    "src/routes/**/+page.server.ts": {
-      "maxDuration": 60
-    }
-  }
-}

@@ -6,6 +6,11 @@ import axios, { AxiosError } from "axios"
 import { superValidate } from "sveltekit-superforms"
 import { zod } from "sveltekit-superforms/adapters"
 import type { Actions, PageServerLoad } from "./$types"
+import type { Config } from "@sveltejs/adapter-vercel"
+
+export const config: Config = {
+  maxDuration: 60,
+}
 
 export const load: PageServerLoad = async () => {
   return {
