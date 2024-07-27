@@ -17,8 +17,10 @@
   <ErrorMessage message="Video is only for members" />
 {:else if error === "VIDEO_PRIVATE"}
   <ErrorMessage message="Video is private" />
-{:else if error === "TOO_MANY_REQUESTS"}
-  <ErrorMessage message="Too many requests. Try again later." />
+{:else if error === "MAX_RETRIES_EXCEEDED"}
+  <ErrorMessage message="Max retries exceeded" />
+{:else if error === "INVALID_YOUTUBE_URL"}
+  <ErrorMessage message="Invalid YouTube URL" />
 {:else if error}
   <ErrorMessage message="Something went wrong" />
 {/if}

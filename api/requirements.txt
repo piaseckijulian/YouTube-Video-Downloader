@@ -1,2 +1,2 @@
 fastapi==0.111.1
-pytubefix==6.6.2
+pytube @ git+https://github.com/piaseckijulian/pytube-cipher-fix.git@f7374a2fa3d0e3e460c3cf1ff716626cbef222f2

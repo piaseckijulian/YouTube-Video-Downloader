@@ -1,8 +1,9 @@
 import logging
 from io import BytesIO
 
-from pytubefix import YouTube
-from pytubefix.exceptions import (
+from fastapi import HTTPException
+from pytube import YouTube
+from pytube.exceptions import (
     AgeRestrictedError,
     LiveStreamError,
     MaxRetriesExceeded,
@@ -12,7 +13,7 @@ from pytubefix.exceptions import (
     VideoRegionBlocked,
     VideoUnavailable,
 )
-from pytubefix.innertube import _default_clients
+from pytube.innertube import _default_clients
 
 # Configure logging
 logging.basicConfig(
@@ -25,37 +26,35 @@ _default_clients["ANDROID_MUSIC"] = _default_clients["ANDROID_CREATOR"]
 
 
 # Return buffer or error
-def get_video(video_url: str) -> tuple[BytesIO | None, str | None]:
+def get_video(video_url: str) -> BytesIO:
     try:
         video = YouTube(video_url)
         stream = video.streams.get_highest_resolution()
 
         buffer = BytesIO()
-        # Save video to buffer
         stream.stream_to_buffer(buffer)
         buffer.seek(0)
 
-        return (buffer, None)
+        return buffer
 
     except VideoPrivate:
-        return (None, "VIDEO_PRIVATE")
+        raise HTTPException(status_code=400, detail="VIDEO_PRIVATE")
     except MembersOnly:
-        return (None, "VIDEO_MEMBERS_ONLY")
+        raise HTTPException(status_code=400, detail="VIDEO_MEMBERS_ONLY")
     except AgeRestrictedError:
-        return (None, "VIDEO_AGE_RESTRICTED")
+        raise HTTPException(status_code=400, detail="VIDEO_AGE_RESTRICTED")
     except VideoRegionBlocked:
-        return (None, "VIDEO_REGION_BLOCKED")
+        raise HTTPException(status_code=400, detail="VIDEO_REGION_BLOCKED")
     except LiveStreamError:
-        return (None, "VIDEO_LIVE_STREAM")
+        raise HTTPException(status_code=400, detail="VIDEO_LIVE_STREAM")
     except VideoUnavailable:
-        return (None, "VIDEO_UNAVAILABLE")
+        raise HTTPException(status_code=400, detail="VIDEO_UNAVAILABLE")
     except MaxRetriesExceeded:
-        return (None, "TOO_MANY_REQUESTS")
+        raise HTTPException(status_code=400, detail="MAX_RETRIES_EXCEEDED")
     except RegexMatchError:
-        return (None, "The provided URL is not a valid YouTube video URL")
+        raise HTTPException(status_code=400, detail="INVALID_YOUTUBE_URL")
     except Exception as e:
         logging.error(
-            f"An unexpected error occurred. Video URL: {video_url}, Error: {e}"
+            f"Internal Server Error. Video URL: {video_url}, Error: {e}"
         )
-
-        return (None, "An unexpected error ocurred")
+        raise HTTPException(status_code=500, detail="Internal Server Error")
