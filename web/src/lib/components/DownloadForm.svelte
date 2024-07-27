@@ -2,7 +2,7 @@
   import * as Form from "$lib/components/ui/form"
   import { Input } from "$lib/components/ui/input"
   import { formSchema, type FormSchema } from "$lib/schema"
-  import LoaderCircle from "lucide-svelte/icons/loader-circle"
+  import { LoaderCircle } from "lucide-svelte"
   import {
     superForm,
     type Infer,
