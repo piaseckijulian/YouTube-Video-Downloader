@@ -1,12 +1,12 @@
 <script lang="ts">
   import * as Form from "$lib/components/ui/form"
   import { Input } from "$lib/components/ui/input"
-  import { formSchema, type FormSchema } from "$lib/schema"
+  import { type FormSchema, formSchema } from "$lib/schema"
   import { LoaderCircle } from "lucide-svelte"
   import {
-    superForm,
     type Infer,
     type SuperValidated,
+    superForm,
   } from "sveltekit-superforms"
   import { zodClient } from "sveltekit-superforms/adapters"
 

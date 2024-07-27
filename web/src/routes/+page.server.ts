@@ -1,12 +1,12 @@
 import { API_URL } from "$env/static/private"
 import { formSchema } from "$lib/schema"
 import type { ErrorApiResponse } from "$lib/types"
+import type { Config } from "@sveltejs/adapter-vercel"
 import { fail } from "@sveltejs/kit"
 import axios, { AxiosError } from "axios"
 import { superValidate } from "sveltekit-superforms"
 import { zod } from "sveltekit-superforms/adapters"
 import type { Actions, PageServerLoad } from "./$types"
-import type { Config } from "@sveltejs/adapter-vercel"
 
 export const config: Config = {
   maxDuration: 60,
