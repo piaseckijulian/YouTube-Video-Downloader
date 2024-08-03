@@ -1,8 +1,8 @@
 <script lang="ts">
-  import type { ErrorApiResponse } from "$lib/types"
+  import type { ErrorResponse } from "$lib/types"
   import ErrorMessage from "./ErrorMessage.svelte"
 
-  export let error: ErrorApiResponse["detail"]
+  export let error: ErrorResponse["detail"]
 </script>
 
 {#if error === "VIDEO_UNAVAILABLE"}
@@ -22,5 +22,5 @@
 {:else if error === "INVALID_YOUTUBE_URL"}
   <ErrorMessage message="Invalid YouTube URL" />
 {:else if error}
-  <ErrorMessage message="Something went wrong" />
+  <ErrorMessage message="An unknown error ocurred" />
 {/if}

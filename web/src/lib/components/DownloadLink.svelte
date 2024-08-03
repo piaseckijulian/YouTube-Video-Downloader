@@ -1,13 +1,13 @@
 <script lang="ts">
   import { onMount } from "svelte"
 
-  export let videoBase64String: string
+  export let videoBase64: string
 
   let downloadAnchorRef: HTMLAnchorElement
 
   onMount(() => {
     const arrayBuffer = new Uint8Array(
-      atob(videoBase64String)
+      atob(videoBase64)
         .split("")
         .map((char) => char.charCodeAt(0)),
     ).buffer

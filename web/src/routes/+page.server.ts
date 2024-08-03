@@ -1,9 +1,9 @@
 import { API_URL } from "$env/static/private"
 import { formSchema } from "$lib/schema"
-import type { ErrorApiResponse } from "$lib/types"
+import type { ErrorResponse, VideoResponse } from "$lib/types"
 import type { Config } from "@sveltejs/adapter-vercel"
 import { fail } from "@sveltejs/kit"
-import axios, { AxiosError } from "axios"
+import axios from "axios"
 import { superValidate } from "sveltekit-superforms"
 import { zod } from "sveltekit-superforms/adapters"
 import type { Actions, PageServerLoad } from "./$types"
@@ -31,32 +31,32 @@ export const actions = {
     const videoUrl = form.data.videoUrl
 
     try {
-      const { data } = await axios.get<ArrayBuffer>(
+      const { data } = await axios.get<VideoResponse>(
         `${API_URL}/download-video?url=${encodeURIComponent(videoUrl)}`,
-        { responseType: "arraybuffer" },
       )
 
-      const base64String = Buffer.from(data).toString("base64")
+      const videoBase64 = data.videoBase64
 
       return {
         form,
-        videoBase64String: base64String,
+        videoBase64,
         error: null,
       }
     } catch (error) {
-      if (error instanceof AxiosError) {
-        const res = error.response?.data
-        const { detail: errorMsg }: ErrorApiResponse = JSON.parse(
-          Buffer.from(res).toString(),
-        )
+      let errorMsg: ErrorResponse["detail"]
 
-        console.error(errorMsg)
+      if (axios.isAxiosError(error) && error.response?.data?.detail) {
+        errorMsg = error.response.data.detail
+      } else {
+        errorMsg = "An unknown error ocurred"
+      }
 
-        return {
-          form,
-          videoBase64String: null,
-          error: errorMsg,
-        }
+      console.error(errorMsg)
+
+      return {
+        form,
+        videoBase64: null,
+        error: errorMsg,
       }
     }
   },

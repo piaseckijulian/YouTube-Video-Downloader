@@ -1,4 +1,8 @@
-export type ErrorApiResponse = {
+export type VideoResponse = {
+  videoBase64: string
+}
+
+export type ErrorResponse = {
   detail:
     | "VIDEO_PRIVATE"
     | "VIDEO_MEMBERS_ONLY"
@@ -8,5 +12,5 @@ export type ErrorApiResponse = {
     | "VIDEO_UNAVAILABLE"
     | "MAX_RETRIES_EXCEEDED"
     | "INVALID_YOUTUBE_URL"
-    | "Internal Server Error"
+    | "An unknown error ocurred"
 }

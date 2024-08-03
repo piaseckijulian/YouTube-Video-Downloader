@@ -16,8 +16,8 @@
 
   <DownloadForm data={data.form} />
 
-  {#if form?.videoBase64String}
-    <DownloadLink videoBase64String={form.videoBase64String} />
+  {#if form?.videoBase64}
+    <DownloadLink videoBase64={form.videoBase64} />
   {/if}
 
   {#if form?.error}

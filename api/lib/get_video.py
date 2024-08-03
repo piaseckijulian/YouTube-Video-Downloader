@@ -1,3 +1,4 @@
+import base64
 import logging
 from io import BytesIO
 
@@ -25,8 +26,7 @@ logging.basicConfig(
 _default_clients["ANDROID_MUSIC"] = _default_clients["ANDROID_CREATOR"]
 
 
-# Return buffer or error
-def get_video(video_url: str) -> BytesIO:
+def get_video(video_url: str) -> str:
     try:
         video = YouTube(video_url)
         stream = video.streams.get_highest_resolution()
@@ -35,8 +35,10 @@ def get_video(video_url: str) -> BytesIO:
         stream.stream_to_buffer(buffer)
         buffer.seek(0)
 
-        return buffer
+        # Encode the video data as a base64 string
+        video_base64 = base64.b64encode(buffer.read()).decode("utf-8")
 
+        return video_base64
     except VideoPrivate:
         raise HTTPException(status_code=400, detail="VIDEO_PRIVATE")
     except MembersOnly:
@@ -55,6 +57,6 @@ def get_video(video_url: str) -> BytesIO:
         raise HTTPException(status_code=400, detail="INVALID_YOUTUBE_URL")
     except Exception as e:
         logging.error(
-            f"Internal Server Error. Video URL: {video_url}, Error: {e}"
+            f"An unknown error ocurred. Video URL: {video_url}, Error: {e}"
         )
-        raise HTTPException(status_code=500, detail="Internal Server Error")
+        raise HTTPException(status_code=500, detail="An unknown error ocurred")
