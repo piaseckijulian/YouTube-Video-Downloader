@@ -32,15 +32,31 @@ YouTube Video Downloader enables quick and easy downloading of YouTube videos. �
 - FastAPI
 - PyTube
 
-## ✨ Usage
+## ✨ Quick Start
+
+Here’s how to set up the project on your local machine.
+
+**Prerequisites**
+
+Ensure that the following are installed on your machine:
+
+- [Git](https://git-scm.com)
+- [Docker](https://docker.com)
+
+**Cloning the Repository**
 
 ```bash
 git clone https://github.com/piaseckijulian/YouTube-Video-Downloader.git
 cd YouTube-Video-Downloader
+```
+
+**Running the Project**
+
+```bash
 docker compose up --build --watch
 ```
 
-That's it! - You're good to go. You can add new features, fix bugs etc.
+That's it! - You're good to go. The frontend should be live on http://localhost:5173 and the backend on http://localhost:8000
 
 ## 🔥 API Endpoints
 
