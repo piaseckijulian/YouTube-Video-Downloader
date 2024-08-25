@@ -1,4 +1,4 @@
-fastapi==0.112.1
+fastapi==0.112.2
 fastapi-cli==0.0.5
 pytube @ git+https://github.com/piaseckijulian/pytube-cipher-fix.git@f7374a2fa3d0e3e460c3cf1ff716626cbef222f2
 uvicorn==0.30.6
