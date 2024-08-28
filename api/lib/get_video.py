@@ -14,16 +14,11 @@ from pytube.exceptions import (
     VideoRegionBlocked,
     VideoUnavailable,
 )
-from pytube.innertube import _default_clients
 
 # Configure logging
 logging.basicConfig(
     format="%(asctime)s - %(message)s", datefmt="%d/%m/%y %H:%M:%S"
 )
-
-
-# Unblock restricted content
-_default_clients["ANDROID_MUSIC"] = _default_clients["ANDROID_CREATOR"]
 
 
 def get_video(video_url: str) -> str:
