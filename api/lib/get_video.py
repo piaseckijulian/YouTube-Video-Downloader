@@ -29,7 +29,12 @@ _default_clients["ANDROID_MUSIC"] = _default_clients["ANDROID_CREATOR"]
 def get_video(video_url: str) -> str:
     try:
         video = YouTube(video_url)
-        stream = video.streams.get_highest_resolution()
+        stream = (
+            video.streams.filter(progressive=True, file_extension="mp4")
+            .order_by("resolution")
+            .desc()
+            .first()
+        )
 
         buffer = BytesIO()
         stream.stream_to_buffer(buffer)
