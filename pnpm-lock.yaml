@@ -66,8 +66,8 @@ importers:
         specifier: ^1.0.0
         version: 1.0.1(svelte@4.2.19)(sveltekit-superforms@2.17.0(@sveltejs/kit@2.5.25(@sveltejs/vite-plugin-svelte@3.1.2(svelte@4.2.19)(vite@5.4.2(@types/node@20.16.2)))(svelte@4.2.19)(vite@5.4.2(@types/node@20.16.2)))(svelte@4.2.19))
       lucide-svelte:
-        specifier: ^0.436.0
-        version: 0.436.0(svelte@4.2.19)
+        specifier: ^0.437.0
+        version: 0.437.0(svelte@4.2.19)
       sveltekit-superforms:
         specifier: ^2.15.1
         version: 2.17.0(@sveltejs/kit@2.5.25(@sveltejs/vite-plugin-svelte@3.1.2(svelte@4.2.19)(vite@5.4.2(@types/node@20.16.2)))(svelte@4.2.19)(vite@5.4.2(@types/node@20.16.2)))(svelte@4.2.19)
@@ -1691,8 +1691,8 @@ packages:
   lru-cache@10.4.3:
     resolution: {integrity: sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==}
 
-  lucide-svelte@0.436.0:
-    resolution: {integrity: sha512-oRyTPzqudX01WWcSohl/Ob44GFqV/sw4moKQbsqtQ0EnKPjDPYh/v0wSaQ0wYljwSEaJ7zkBwY2lkgYFMX9PVg==}
+  lucide-svelte@0.437.0:
+    resolution: {integrity: sha512-5FaAhypmFL+eIK2t+Rog5ydza8Y9eVEMHlR33bXLrMZveLodRX9/XqNoIpuHxxG7NR4FT5KZZvcPN2V1+kSuIw==}
     peerDependencies:
       svelte: ^3 || ^4 || ^5.0.0-next.42
 
@@ -4112,7 +4112,7 @@ snapshots:
 
   lru-cache@10.4.3: {}
 
-  lucide-svelte@0.436.0(svelte@4.2.19):
+  lucide-svelte@0.437.0(svelte@4.2.19):
     dependencies:
       svelte: 4.2.19
 
