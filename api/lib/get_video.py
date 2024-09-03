@@ -1,19 +1,10 @@
 import base64
 import logging
-from io import BytesIO
 
+import requests
 from fastapi import HTTPException
-from pytube import YouTube
-from pytube.exceptions import (
-    AgeRestrictedError,
-    LiveStreamError,
-    MaxRetriesExceeded,
-    MembersOnly,
-    RegexMatchError,
-    VideoPrivate,
-    VideoRegionBlocked,
-    VideoUnavailable,
-)
+from yt_dlp import YoutubeDL
+from yt_dlp.utils import DownloadError
 
 # Configure logging
 logging.basicConfig(
@@ -22,41 +13,33 @@ logging.basicConfig(
 
 
 def get_video(video_url: str) -> str:
+    ydl_opts = {
+        "format": "best[ext=mp4]",
+        "quiet": True,
+        "no_warnings": True,
+        "outtmpl": "",
+    }
+
     try:
-        video = YouTube(video_url)
-        stream = (
-            video.streams.filter(progressive=True, file_extension="mp4")
-            .order_by("resolution")
-            .desc()
-            .first()
-        )
+        with YoutubeDL(ydl_opts) as ydl:
+            info = ydl.extract_info(video_url, download=False)
+            video_url = info["url"]
 
-        buffer = BytesIO()
-        stream.stream_to_buffer(buffer)
-        buffer.seek(0)
+            res = requests.get(video_url)
+            video_content = res.content
 
-        # Encode the video data as a base64 string
-        video_base64 = base64.b64encode(buffer.read()).decode("utf-8")
+            video_base64 = base64.b64encode(video_content).decode("utf-8")
 
-        return video_base64
-    except VideoPrivate:
-        raise HTTPException(status_code=400, detail="VIDEO_PRIVATE")
-    except MembersOnly:
-        raise HTTPException(status_code=400, detail="VIDEO_MEMBERS_ONLY")
-    except AgeRestrictedError:
-        raise HTTPException(status_code=400, detail="VIDEO_AGE_RESTRICTED")
-    except VideoRegionBlocked:
-        raise HTTPException(status_code=400, detail="VIDEO_REGION_BLOCKED")
-    except LiveStreamError:
-        raise HTTPException(status_code=400, detail="VIDEO_LIVE_STREAM")
-    except VideoUnavailable:
+            return video_base64
+
+    except DownloadError:
         raise HTTPException(status_code=400, detail="VIDEO_UNAVAILABLE")
-    except MaxRetriesExceeded:
-        raise HTTPException(status_code=400, detail="MAX_RETRIES_EXCEEDED")
-    except RegexMatchError:
-        raise HTTPException(status_code=400, detail="INVALID_YOUTUBE_URL")
+
     except Exception as e:
         logging.error(
-            f"An unknown error ocurred. Video URL: {video_url}, Error: {e}"
+            f"An unknown error occurred. Video URL: {video_url}, Error: {e}"
         )
-        raise HTTPException(status_code=500, detail="An unknown error ocurred")
+
+        raise HTTPException(
+            status_code=500, detail="An unknown error occurred"
+        )
