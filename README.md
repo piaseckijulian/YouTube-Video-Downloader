@@ -50,14 +50,6 @@ git clone https://github.com/piaseckijulian/YouTube-Video-Downloader.git
 cd YouTube-Video-Downloader
 ```
 
-**Set Up Environment Variables**
-
-In `api` directory duplicate the `.env.example` file and rename it to `.env`
-
-`YOUTUBE_USERNAME` is the username of a YouTube account
-
-`YOUTUBE_PASSWORD` is the password of a YouTube account
-
 **Running the Project**
 
 ```bash

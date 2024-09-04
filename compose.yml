@@ -25,7 +25,6 @@ services:
     container_name: youtube_video_downloader_api
     image: piaseckijulian/youtube_video_downloader_api
     build: ./api
-    env_file: ./api/.env
     ports:
       - "8000:8000"
     develop:
