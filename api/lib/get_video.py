@@ -1,10 +1,14 @@
 import base64
 import logging
+from os import environ
 
 import requests
+from dotenv import load_dotenv
 from fastapi import HTTPException
 from yt_dlp import YoutubeDL
 from yt_dlp.utils import DownloadError
+
+load_dotenv()
 
 # Configure logging
 logging.basicConfig(
@@ -14,9 +18,10 @@ logging.basicConfig(
 
 def get_video(video_url: str) -> str:
     ydl_opts = {
+        "username": environ.get("YOUTUBE_USERNAME"),
+        "password": environ.get("YOUTUBE_PASSWORD"),
         "format": "best[ext=mp4]",
         "quiet": True,
-        "no_warnings": True,
         "outtmpl": "",
     }
 
