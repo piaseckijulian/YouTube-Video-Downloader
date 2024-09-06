@@ -17,6 +17,7 @@ def get_video(video_url: str) -> str:
         "format": "best[ext=mp4]",
         "quiet": True,
         "outtmpl": "",
+        "proxy": "8.153.12.119:3128",
     }
 
     try:
