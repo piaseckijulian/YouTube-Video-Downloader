@@ -4,10 +4,10 @@
 ![GitHub forks](https://img.shields.io/github/forks/piaseckijulian/YouTube-Video-Downloader?style=for-the-badge)
 ![GitHub watchers](https://img.shields.io/github/watchers/piaseckijulian/YouTube-Video-Downloader?style=for-the-badge)
 
-YouTube Video Downloader enables quick and easy downloading of YouTube videos. 🚀
-
 > [!NOTE]  
 > This project is now read-only because YouTube has blacklisted the backend's IP address.
+
+YouTube Video Downloader enables quick and easy downloading of YouTube videos. 🚀
 
 <img src="./web/static/thumbnail.png" alt="Image of YouTube Video Downloader" width="800" height="400" />
 
