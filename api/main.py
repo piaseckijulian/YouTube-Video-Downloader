@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from lib.get_video import get_video
+from utils.get_video import get_video
 
 app = FastAPI()
 
