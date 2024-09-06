@@ -6,7 +6,8 @@
 
 YouTube Video Downloader enables quick and easy downloading of YouTube videos. 🚀
 
-> **Note**: This project is now read-only because YouTube has blacklisted the backend's IP address.
+> [!NOTE]  
+> This project is now read-only because YouTube has blacklisted the backend's IP address.
 
 <img src="./web/static/thumbnail.png" alt="Image of YouTube Video Downloader" width="800" height="400" />
 
