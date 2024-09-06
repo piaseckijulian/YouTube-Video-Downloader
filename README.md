@@ -10,10 +10,6 @@ YouTube Video Downloader enables quick and easy downloading of YouTube videos. �
 
 <img src="./web/static/thumbnail.png" alt="Image of YouTube Video Downloader" width="800" height="400" />
 
-## 🔗 Links
-
-- [Live Demo](https://julian-yt-downloader.vercel.app)
-
 ## 📐 Tech Stack
 
 ### 🎨 Frontend
