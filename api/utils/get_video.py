@@ -22,6 +22,10 @@ def get_video(video_url: str) -> str:
     try:
         with YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(video_url, download=False)
+
+            if info["is_live"]:
+                raise DownloadError("VIDEO_LIVE_STREAM")
+
             video_url = info["url"]
 
             res = requests.get(video_url)
